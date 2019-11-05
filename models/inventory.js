@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Inventory = new Schema({
+var InventorySchema = new Schema({
     name: String,
     description: String,
     pic: String,
@@ -9,4 +9,4 @@ var Inventory = new Schema({
     timestamps: true
   });  
 
-  module.exports = mongoose.model('Inventory', Inventory);
+  module.exports = mongoose.model('Inventory', InventorySchema);
