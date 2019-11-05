@@ -8,6 +8,7 @@ module.exports = {
 };
 
 async function index(req, res) {
+    console.log('test1')
    let items = await Inventory.find({})
     res.status(200).json(items)
   }
