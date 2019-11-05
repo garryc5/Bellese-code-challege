@@ -43,10 +43,7 @@ updateState = () =>
 {
   fetch('/api/').then(res=>{
     res.json().then
-    (data=>
-      this.setState({
-        inventory: JSON.stringify(data)
-      })
+    (data=>this.setState({inventory: JSON.stringify(data)})
   )})
 }
 
