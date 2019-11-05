@@ -41,10 +41,10 @@ this.updateState()
 
 updateState = () =>
 {
-  fetch('/api/').then(res=>{
-    res.json().then
-    (data=>this.setState({inventory: JSON.stringify(data)})
-  )})
+  fetch('/api/').then(res=>
+    res.text()).then(data=> console.log(data)
+      //this.setState({inventory: JSON.stringify(data)})
+  )
 }
 
 show1 = (idx) => 
