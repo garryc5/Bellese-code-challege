@@ -125,6 +125,7 @@ render()
         this.state.inventory.map((item,idx)=>
         {
             return <div key={idx} onClick={()=>{this.show1(idx+1)}}>
+           <hr/>
             <h1>{item.name}</h1>
             <h3>{item.description}</h3>
             <img src={item.pic} alt='bad image url'  height='auto' width='90%'/>
