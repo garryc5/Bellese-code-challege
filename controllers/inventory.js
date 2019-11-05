@@ -16,7 +16,6 @@ async function Add(req,res)
 {
     try
     {await Inventory.create(req.body)   
-        index(req,res);
     } catch (err) {
         res.json({err});
       }
@@ -34,8 +33,6 @@ async function Delete(req,res)
 async function update(req,res)
 {  
     try{
-  await  Inventory.updateOne({_id: req.params.id},{...req.body}).then((e)=>{
-        Inventory.save()
-        res.status(200);
-    })}catch(e){console.log(e)}
+  await  Inventory.updateOne({_id: req.params.id},{...req.body}).then(res.status(200))
+    }catch(e){console.log(e)}
 }

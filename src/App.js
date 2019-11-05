@@ -24,9 +24,9 @@ componentDidMount = () =>
 this.updateState()
 }
 
-updateState = async () =>
+updateState =  () =>
 {
-await fetch('/api/index').then(res=>
+ fetch('/api/index').then(res=>
     res.json()).then(data=> this.setState({inventory: [...data]})
   ).then(this.setState(
     {
@@ -106,7 +106,7 @@ updateItem = () =>
     method: 'POST',
     body: JSON.stringify(this.state.newItem),
     headers: new Headers({'Content-Type': 'application/json'}),
-  }).then(res=>{res.json()}).then(this.updateState())
+  }).then(this.updateState())
 }
 render()
 {
