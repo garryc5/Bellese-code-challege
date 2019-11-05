@@ -25,8 +25,7 @@ async function Add(req,res)
 async function Delete(req,res)
 {
     try{
-    await Inventory.deleteOne({_id: req.params.id},(e)=>{
-        Inventory.save()
+    await Inventory.findByIdAndDelete(req.params.id,(e)=>{
         res.status(200);
     })}catch(e){console.log(e)}
 }

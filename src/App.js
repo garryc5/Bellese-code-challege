@@ -5,22 +5,7 @@ class App extends Component {
   constructor() {
     super();
   this.state = {
-    inventory : [{
-      name: 'nme',
-      description: 'description',
-      pic:'piture url',
-      _id :"fakj"
-    },{
-      name: 'ame',
-      description: 'description',
-      pic:'https://lh3.googleusercontent.com/CvAKWgolmhQzoAY5HkM2HGwTq4x4GARU0a2UiHn0Tt4AmuQDP1rSTR9z1rcN9VsdgE8beK2LBZTtaZiM5P2gDUkFHpZTiTGIzatHkwOfsLTQqI5cEgNCrQzPvEw5XFbAwKS2R32kTg=w851-h482-no',
-      _id :"fakjga"
-    },{
-      name: 'nae',
-      description: 'description',
-      pic:'pitre url',
-      _id :"fakjafh"
-    }],
+    inventory : [],
 
     displayOne: false,
     addItem : false,
@@ -45,6 +30,7 @@ await fetch('/api/index').then(res=>
     res.json()).then(data=> this.setState({inventory: [...data]})
   ).then(this.setState(
     {
+      displayOne: false,
       addItem : false,
       newItem : {  
       name: 'name',
@@ -119,15 +105,13 @@ addItem = ()=>
 deleteItem = (idx) =>
 {
   return fetch(`/api/delete/${idx}`, {
-    method: 'DELETE',
-    headers: new Headers({'Content-Type': 'application/json'}),
+    method: 'delete',
   }).then(this.updateState())
 }
 
 updateItem = () =>
 {
-  
-  return fetch(`/api/update/${this.state.toggleUpdate}`, {
+  return fetch(`/api/update/${this.state.updateItem}`, {
     method: 'POST',
     body: JSON.stringify(this.state.newItem),
     headers: new Headers({'Content-Type': 'application/json'}),
