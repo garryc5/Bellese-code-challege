@@ -41,7 +41,12 @@ this.updateState()
 
 updateState = () =>
 {
-  fetch('/api/').then(res=>
+  const options = {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }}
+  return fetch('/api/', options).then(res=>
     res.text()).then(data=> console.log(data)
       //this.setState({inventory: JSON.stringify(data)})
   )
