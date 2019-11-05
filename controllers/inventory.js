@@ -8,8 +8,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-    console.log('test1')
-   let items = await Inventory.find({})
+   let items = await Inventory.find({});
     res.status(200).json(items)
   }
 
@@ -25,21 +24,19 @@ async function Add(req,res)
 
 async function Delete(req,res)
 {
+    try{
     await Inventory.deleteOne({_id: req.params.id},(e)=>{
-        if(e) console.log(e)
         Inventory.save()
         res.status(200);
-    }
-    )
+    })}catch(e){console.log(e)}
 }
 
 
 async function update(req,res)
-{
-  await  Inventory.updateOne({_id: req.params.id},(e)=>{
-        if(e) console.log(e)
+{  
+    try{
+  await  Inventory.updateOne({_id: req.params.id},{...req.body}).then((e)=>{
         Inventory.save()
         res.status(200);
-    }
-    )
+    })}catch(e){console.log(e)}
 }
