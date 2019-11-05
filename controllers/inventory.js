@@ -1,14 +1,15 @@
 const Inventory = require('../models/inventory');
 
 module.exports = {
-    getAll,
+    index,
     Add,
     Delete,
     update,
 };
 
-async function getAll(req, res) {
+async function index(req, res) {
   await Inventory.find({}).then(items => {
+    console.log(items)
     res.status(200).json(items)
   })}
 

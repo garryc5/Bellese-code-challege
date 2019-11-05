@@ -50,7 +50,7 @@ updateState = () =>
   )})
 }
 
-show1(idx) 
+show1 = (idx) => 
 {
 this.setState(
   {
@@ -152,56 +152,58 @@ render()
     <div className="App">
       {
       this.state.displayOne ? 
-      <div>
-      <h1 onClick={this.showAll}>{this.state.inventory[this.state.displayOne-1].name}</h1>
-      <h3>{this.state.inventory[this.state.displayOne-1].description}</h3>
-      <img src={this.state.inventory[this.state.displayOne-1].pic} alt='bad image url' height='auto' width='70%' />
-      <div className="buttonStyling" onClick={()=>this.toggleUpdate(this.state.inventory[this.state.displayOne-1]._id, this.state.displayOne-1)}>update Item</div>          <div className="buttonStyling" onClick={()=>this.deleteItem(this.state.inventory[this.state.displayOne-1]._id)}>Delete</div>
-      </div> 
+        <div>
+        <h1 onClick={this.showAll}>{this.state.inventory[this.state.displayOne-1].name}</h1>
+        <h3>{this.state.inventory[this.state.displayOne-1].description}</h3>
+        <img src={this.state.inventory[this.state.displayOne-1].pic} alt='bad image url' height='auto' width='70%' />
+        <div className="buttonStyling" onClick={()=>this.toggleUpdate(this.state.inventory[this.state.displayOne-1]._id, this.state.displayOne-1)}>update Item</div>          <div className="buttonStyling" onClick={()=>this.deleteItem(this.state.inventory[this.state.displayOne-1]._id)}>Delete</div>
+        </div> 
       :
-      this.state.inventory.map((item,idx)=>
-      {
-        return <div key={idx} onClick={()=>{this.show1(idx+1)}}>
-        <h1>{item.name}</h1>
-        <h3>{item.description}</h3>
-        <img src={item.pic} alt='bad image url'  height='auto' width='90%'/>
-        </div>
+        this.state.inventory.map((item,idx)=>
+        {
+          return <div key={idx} onClick={()=>{this.show1(idx+1)}}>
+            <h1>{item.name}</h1>
+            <h3>{item.description}</h3>
+            <img src={item.pic} alt='bad image url'  height='auto' width='90%'/>
+          </div>
       })}
   
-  
-  
-  {this.state.addItem ? 
-  <form onSubmit={this.addItem}>
-    <input 
-      name="name"
-      value={this.state.newItem.name}
-      onChange={this.handleChange}
-      required
-    ></input>
-    <br/>
-    <input
-      name="description"
-      value={this.state.newItem.description}
-      onChange={this.handleChange}
-      required
-      ></input> <br/>
-    <input
-      name="pic"
-      value={this.state.newItem.pic}
-      onChange={this.handleChange}
-      required
-    ></input> <br/>
-    {this.state.updateItem ? 
-      <div className="buttonStyling" onClick={this.updateItem}>update</div>
+  {
+    this.state.addItem ? 
+      <form onSubmit={this.addItem}>
+        <input 
+          name="name"
+          value={this.state.newItem.name}
+          onChange={this.handleChange}
+          required
+        ></input>
+      <br/>
+        <input
+          name="description"
+          value={this.state.newItem.description}
+          onChange={this.handleChange}
+          required
+        ></input> 
+      <br/>
+        <input
+          name="pic"
+          value={this.state.newItem.pic}
+          onChange={this.handleChange}
+          required
+        ></input> 
+      <br/>
+      {
+      this.state.updateItem ? 
+        <div className="buttonStyling" onClick={this.updateItem}>update</div>
       :
-    <div onClick={this.addItem} className="buttonStyling">Submit</div>
-  }
+        <div onClick={this.addItem} className="buttonStyling">Submit</div>
+      }
       <div className="buttonStyling" onClick={this.toggleAdd}>Cancel</div>
     </form>
     :
-      <div className="buttonStyling" onClick={this.toggleAdd}>Add Item</div>
-      }
-      </div>
+    <div className="buttonStyling" onClick={this.toggleAdd}>Add Item</div>
+    }
+  </div>
   );
 }
   
