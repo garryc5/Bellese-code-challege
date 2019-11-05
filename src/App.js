@@ -90,16 +90,7 @@ addItem = ()=>
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json'}),
     body: JSON.stringify(this.state.newItem)
-  }).then(res=>{res.json()}).then(
-    this.setState(
-      {
-        addItem : false,
-        newItem : {     
-        name: 'name',
-        description: 'description',
-        pic:'piture url'}
-      })
-  ).then(this.updateState())
+  }).then(res=>{res.json()}).then(this.updateState())
 }
 
 deleteItem = (idx) =>
