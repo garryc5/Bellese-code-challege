@@ -41,12 +41,8 @@ this.updateState()
 
 updateState = () =>
 {
-  const options = {
-    method: 'GET'
-    }
-  return fetch('/api/', options).then(res=>
-    res.text()).then(data=> console.log(data)
-      //this.setState({inventory: JSON.stringify(data)})
+ fetch('/api/index').then(res=>
+    res.json()).then(data=> this.setState({inventory: JSON.stringify(data)})
   )
 }
 
