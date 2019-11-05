@@ -1,3 +1,17 @@
+# live link
+[here](https://peaceful-inlet-76313.herokuapp.com/)
+
+# future improvements
+* use components to compartmentalize code
+* include s3's photo bucket to allow uploading of photos 
+* better improve CSS
+   * for example, adding a hoover effect on the names so that you know to click to display one or all of the items
+* add a selection for deleting multiple items at once
+* Remove the add Item button from the individual items page 
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
