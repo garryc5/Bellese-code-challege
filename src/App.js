@@ -39,11 +39,18 @@ componentDidMount = () =>
 this.updateState()
 }
 
-updateState = () =>
+updateState = async () =>
 {
- fetch('/api/index').then(res=>
-    res.json()).then(data=> this.setState({inventory: JSON.stringify(data)})
-  )
+await fetch('/api/index').then(res=>
+    res.json()).then(data=> this.setState({inventory: [...data]})
+  ).then(this.setState(
+    {
+      addItem : false,
+      newItem : {  
+      name: 'name',
+      description: 'description',
+      pic:'piture url'}
+    }))
 }
 
 show1 = (idx) => 
@@ -112,19 +119,9 @@ addItem = ()=>
 deleteItem = (idx) =>
 {
   return fetch(`/api/delete/${idx}`, {
-    method: 'POST',
-    body: '',
+    method: 'DELETE',
     headers: new Headers({'Content-Type': 'application/json'}),
-  }).then(res=>{res.json()}).then(
-    this.setState(
-      {
-        addItem : false,
-        newItem : {  
-        name: 'name',
-        description: 'description',
-        pic:'piture url'}
-      })
-  ).then(this.updateState())
+  }).then(this.updateState())
 }
 
 updateItem = () =>
@@ -146,8 +143,9 @@ render()
 {
   return (
     <div className="App">
-      {
-      this.state.displayOne ? 
+      {this.state.inventory.length !== 0 ? 
+      <div> 
+      {this.state.displayOne ? 
         <div>
         <h1 onClick={this.showAll}>{this.state.inventory[this.state.displayOne-1].name}</h1>
         <h3>{this.state.inventory[this.state.displayOne-1].description}</h3>
@@ -157,16 +155,20 @@ render()
       :
         this.state.inventory.map((item,idx)=>
         {
-          return <div key={idx} onClick={()=>{this.show1(idx+1)}}>
+            return <div key={idx} onClick={()=>{this.show1(idx+1)}}>
             <h1>{item.name}</h1>
             <h3>{item.description}</h3>
             <img src={item.pic} alt='bad image url'  height='auto' width='90%'/>
           </div>
       })}
+    </div>
+    :
+    <h2>please add an item</h2>
+    }
   
   {
     this.state.addItem ? 
-      <form onSubmit={this.addItem}>
+      <form>
         <input 
           name="name"
           value={this.state.newItem.name}
@@ -192,7 +194,7 @@ render()
       this.state.updateItem ? 
         <div className="buttonStyling" onClick={this.updateItem}>update</div>
       :
-        <div onClick={this.addItem} className="buttonStyling">Submit</div>
+        <div  className="buttonStyling" onClick={this.addItem}>Submit</div>
       }
       <div className="buttonStyling" onClick={this.toggleAdd}>Cancel</div>
     </form>
