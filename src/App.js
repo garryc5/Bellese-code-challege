@@ -106,13 +106,7 @@ updateItem = () =>
     method: 'POST',
     body: JSON.stringify(this.state.newItem),
     headers: new Headers({'Content-Type': 'application/json'}),
-  }).then(res=>{res.json()}).then(
-    this.setState(
-      {
-        addItem : false,
-        newItem : {}
-      })
-  ).then(this.updateState())
+  }).then(res=>{res.json()}).then(this.updateState())
 }
 render()
 {
