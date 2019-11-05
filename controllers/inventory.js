@@ -8,18 +8,18 @@ module.exports = {
 };
 
 async function index(req, res) {
-  await Inventory.find({}).then(items => {
-    console.log(items)
+   let items = await Inventory.find({})
     res.status(200).json(items)
-  })}
+  }
 
 async function Add(req,res)
 {
-    await Inventory.create({...req.body},(e)=>{
-        if(e) console.log(e)
-        Inventory.save()
-        res.status(200);
-    })
+    try
+    {await Inventory.create(req.body)   
+        index(req,res);
+    } catch (err) {
+        res.json({err});
+      }
 }
 
 async function Delete(req,res)
