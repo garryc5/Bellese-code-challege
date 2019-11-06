@@ -2,7 +2,7 @@ const Inventory = require('../models/inventory');
 
 module.exports = {
     index,
-    Add,
+    create,
     Delete,
     update,
 };
@@ -12,7 +12,7 @@ async function index(req, res) {
     res.status(200).json(items)
   }
 
-async function Add(req,res)
+async function create(req,res)
 {
     try
     {await Inventory.create(req.body)   

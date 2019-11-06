@@ -28,7 +28,7 @@ updateState =  () =>
 {
  fetch('/api/index').then(res=>
     res.json()).then(data=> this.setState({inventory: [...data]})
-  ).then(this.setState(
+).then(this.setState(
     {
       displayOne: false,
       addItem : false,
@@ -90,7 +90,7 @@ addItem = ()=>
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json'}),
     body: JSON.stringify(this.state.newItem)
-  }).then(res=>{res.json()}).then(this.updateState())
+  }).then(this.updateState())
 }
 
 deleteItem = (idx) =>
